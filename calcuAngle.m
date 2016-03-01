@@ -16,6 +16,12 @@ function angle = calcuAngle(p1,p2,p3,p4)
     v1 = p1 - p2;
     v2 = p3 - p4;
 
-    angle = mod(atan2( det([v1;v2]) , dot(v1,v2) ) *180/pi, 180);
+    if size(v1,2) == 2
+        angle = mod(atan2( det([v1;v2]) , dot(v1,v2) ) *180/pi, 180);
+    elseif size(v1,2) == 3
+        angle = atan2(norm(cross(v1,v2)), dot(v1,v2)) *180/pi;
+    else
+        disp('function "calcuAngle" is only working for lines in 2D and 3D'); 
+    end
     
 end
