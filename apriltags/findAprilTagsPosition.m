@@ -1,11 +1,15 @@
 function aprilTags = findAprilTagsPosition(img, aprilTagType, threshold)
 
+% Convert input image to PNM format, and output it to the folder
+% containing AprilTags executable
 fullFunctionName_aprilTags = which('findAprilTagsPosition');
 fullFolderName_aprilTags = fullFunctionName_aprilTags(1:end-length('findAprilTagsPosition')-3);
 
 % img = imread(fullfile(fullFolderName_aprilTags, 'input.jpg')); % for testing
 
 imwrite(img, fullfile(fullFolderName_aprilTags, 'tmp.pnm'));
+
+
 
     command = [fullfile(fullFolderName_aprilTags, 'patternDetection_april.bat') ' '...
         fullfile(fullFolderName_aprilTags) ' '...
