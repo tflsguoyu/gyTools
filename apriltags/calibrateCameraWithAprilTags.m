@@ -1,5 +1,5 @@
 function [fc,cc,kc,nx,ny,reprojErr] = ...
-    calibrateCameraWithAprilTags(imageFolder, imgFormat, aprilTagsPattern_N13)
+    calibrateCameraWithAprilTags(imageFolder, imgFormat, aprilTagsType, aprilTagsPattern_N13)
 
     listImages = dir(fullfile(imageFolder,['*.' imgFormat]));
     imageNameAll = {listImages.name};
@@ -18,7 +18,7 @@ function [fc,cc,kc,nx,ny,reprojErr] = ...
         img = imread(fullfile(imageFolder, inputImageName));
         
         markersDetected_N9 = [];
-        markersDetected_N9 = findAprilTagsPosition(img, 'tag36h10', 5);
+        markersDetected_N9 = findAprilTagsPosition(img, aprilTagsType, 5);
         
         if size(markersDetected_N9,1) < 4
            continue; 
